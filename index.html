@@ -1,199 +1,164 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 
 <head>
 
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<title>सीताराम मार्केट लिस्ट</title>
 
-<title>Market List</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 
-*{
-    box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 body{
     margin:0;
-    padding:12px;
-    font-family:Arial;
-    background:#eef2ff;
-}
-
-/* Header */
-
-.header{
-    text-align:center;
-    margin-bottom:15px;
-}
-
-.header h2{
-    margin:0;
-    color:#4f46e5;
-    font-size:28px;
-}
-
-.header p{
-    margin-top:5px;
-    color:#666;
-}
-
-/* Add Box */
-
-.add-box{
-    background:white;
     padding:14px;
-    border-radius:18px;
-    box-shadow:0 4px 15px rgba(79,70,229,0.12);
-    position:sticky;
-    top:10px;
-    z-index:100;
+    padding-bottom:120px;
+    background:#eef2ff;
+    font-family:'Poppins',sans-serif;
 }
 
-/* Textarea */
+.sitaram{
+    text-align:center;
+    font-family:'Noto Sans Devanagari';
+    font-size:34px;
+    font-weight:700;
+    color:#ea580c;
+}
+
+.sub-title{
+    text-align:center;
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:16px;
+}
+
+.input-box{
+    background:white;
+    padding:16px;
+    border-radius:18px;
+}
 
 textarea{
     width:100%;
     height:110px;
-    border:2px solid #e0e7ff;
-    border-radius:14px;
-    padding:14px;
-    font-size:16px;
+    border:none;
     outline:none;
     resize:none;
+    border-radius:14px;
     background:#f8faff;
+    padding:14px;
 }
-
-textarea:focus{
-    border-color:#4f46e5;
-}
-
-/* Add Button */
 
 .add-btn{
     width:100%;
-    margin-top:12px;
+    margin-top:14px;
     padding:15px;
     border:none;
     border-radius:14px;
-    background:linear-gradient(
-        135deg,
-        #4f46e5,
-        #7c3aed
-    );
+    font-weight:600;
     color:white;
-    font-size:18px;
-    font-weight:bold;
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
 }
 
-/* List */
-
-#items{
-    margin-top:18px;
-    padding-bottom:100px;
-}
-
-/* Item */
-
-.item{
-    background:white;
-    border-radius:16px;
-    padding:12px;
-    margin-bottom:12px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.05);
-}
-
-/* One Line */
-
-.line{
+.summary{
+    margin-top:14px;
     display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-/* Name */
-
-.name{
-    flex:1;
-    font-size:16px;
-    font-weight:bold;
-    color:#111827;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-}
-
-/* Qty */
-
-.qty{
-    width:60px;
-    text-align:center;
-    color:#666;
-    font-size:14px;
-}
-
-/* Rate */
-
-.rate{
-    width:70px;
-    border:2px solid #e5e7eb;
-    border-radius:10px;
-    padding:10px 6px;
-    font-size:15px;
-    text-align:center;
-    outline:none;
-    background:#fafafa;
-}
-
-.rate:focus{
-    border-color:#4f46e5;
-    background:white;
-}
-
-/* Total */
-
-.total{
-    width:75px;
-    text-align:right;
-    font-size:16px;
-    font-weight:bold;
+    justify-content:space-between;
+    font-weight:600;
     color:#4f46e5;
 }
 
-/* Remove */
-
-.delete-btn{
-    width:38px;
-    height:38px;
-    border:none;
-    border-radius:10px;
-    background:#ef4444;
-    color:white;
-    font-size:18px;
-    flex-shrink:0;
+.bill-box{
+    margin-top:14px;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
 }
 
-/* Total Bar */
+.table-header{
+    display:grid;
+    grid-template-columns:45px 1.5fr 70px 80px 90px 36px;
+    background:#4f46e5;
+    color:white;
+    padding:12px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:45px 1.5fr 70px 80px 90px 36px;
+    gap:6px;
+    padding:12px;
+    border-bottom:1px solid #eef2ff;
+    align-items:center;
+}
+
+.serial{
+    width:30px;
+    height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eef2ff;
+    border-radius:50%;
+    font-weight:700;
+}
+
+.item-name{
+    font-weight:600;
+    word-break:break-word;
+}
+
+.qty{
+    text-align:center;
+    background:#eef2ff;
+    padding:6px;
+    border-radius:8px;
+    font-size:12px;
+}
+
+.rate-input{
+    width:100%;
+    text-align:center;
+    border:none;
+    outline:none;
+    padding:8px;
+    border-radius:8px;
+    background:#f8fafc;
+}
+
+.total{
+    text-align:right;
+    font-weight:700;
+    color:#16a34a;
+}
+
+.delete-btn{
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:6px;
+    background:#ef4444;
+    color:white;
+}
 
 .grand-total{
     position:fixed;
-    bottom:0;
     left:0;
+    bottom:0;
     width:100%;
-    background:linear-gradient(
-        135deg,
-        #4f46e5,
-        #7c3aed
-    );
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
     color:white;
     text-align:center;
-    padding:18px;
-    font-size:24px;
-    font-weight:bold;
-    box-shadow:0 -4px 15px rgba(79,70,229,0.25);
+    padding:16px;
+    font-size:22px;
+    font-weight:700;
 }
 
 </style>
@@ -202,191 +167,141 @@ textarea:focus{
 
 <body>
 
-<div class="header">
+<div class="sitaram">सीताराम</div>
+<div class="sub-title">Smart Billing System</div>
 
-    <h2>🛒 Market List</h2>
+<div class="input-box">
 
-    <p>Fast grocery calculator</p>
-
-</div>
-
-<!-- Add Box -->
-
-<div class="add-box">
-
-<textarea
-    id="bulkInput"
-    placeholder="aata 5kg
+<textarea id="bulkInput" placeholder="aata 5kg
 chawal 4kg
-haldi powder 300g"></textarea>
+haldi 300g"></textarea>
 
-<button
-    class="add-btn"
-    onclick="addBulkItems()">
-
-    + Add List
-
-</button>
+<button class="add-btn" onclick="addBulkItems()">+ Add Items</button>
 
 </div>
 
-<!-- Items -->
+<div class="summary">
+    <div>Total Items: <span id="itemCount">0</span></div>
+</div>
+
+<div class="bill-box">
+
+<div class="table-header" id="tableHeader" style="display:none;">
+    <div>#</div>
+    <div>ITEM</div>
+    <div>QTY</div>
+    <div>RATE</div>
+    <div>TOTAL</div>
+    <div></div>
+</div>
 
 <div id="items"></div>
 
-<!-- Grand Total -->
+</div>
 
 <div class="grand-total">
-
-    Total ₹<span id="grandTotal">0</span>
-
+Total ₹<span id="grandTotal">0</span>
 </div>
 
 <script>
 
-/* Data */
-
 let items = [];
-
-/* Add Bulk */
 
 function addBulkItems(){
 
-    const text =
-        document.getElementById(
-            "bulkInput"
-        ).value.trim();
+    const text = document.getElementById("bulkInput").value.trim();
+    if(!text) return;
 
-    if(text === ""){
+    text.split("\n").forEach(line => {
 
-        alert("Enter Items");
+        let parts = line.trim().split(" ");
+        let qty = parts.pop();
+        let name = parts.join(" ");
 
-        return;
-    }
+        if(!name || !qty) return;
 
-    const lines =
-        text.split("\n");
-
-    lines.forEach(line => {
-
-        line = line.trim();
-
-        if(line === "") return;
-
-        const parts =
-            line.split(" ");
-
-        const qty =
-            parts.pop();
-
-        const name =
-            parts.join(" ");
-
-        if(name === "" || qty === "")
-            return;
-
-        /* Duplicate */
-
-        const existing =
-            items.find(item =>
-
-                item.name.toLowerCase() ===
-                name.toLowerCase()
-            );
+        let existing = items.find(i =>
+            i.name.toLowerCase() === name.toLowerCase()
+        );
 
         if(existing){
-
             existing.qty = qty;
-
         }else{
-
-            items.push({
-
-                name:name,
-
-                qty:qty,
-
-                rate:0,
-
-                total:0
-
-            });
+            items.push({name, qty, rate:0, total:0});
         }
     });
 
+    document.getElementById("bulkInput").value = "";
     renderItems();
-
-    document.getElementById(
-        "bulkInput"
-    ).value = "";
 }
 
-/* Render */
+/* ⭐ FIXED: NO FULL RE-RENDER ON TYPING */
+function updateRate(index, value){
+
+    const item = items[index];
+    item.rate = Number(value);
+
+    let qtyValue = 0;
+
+    if(item.qty.includes("kg")){
+        qtyValue = parseFloat(item.qty.replace("kg",""));
+    }
+    else if(item.qty.includes("g")){
+        qtyValue = parseFloat(item.qty.replace("g","")) / 1000;
+    }
+    else{
+        qtyValue = parseFloat(item.qty);
+    }
+
+    item.total = qtyValue * item.rate;
+
+    document.getElementById("total-" + index).innerText =
+        "₹" + item.total.toFixed(0);
+
+    updateGrandTotal();
+}
 
 function renderItems(){
 
-    const container =
-        document.getElementById(
-            "items"
-        );
+    const container = document.getElementById("items");
+    const header = document.getElementById("tableHeader");
+
+    document.getElementById("itemCount").innerText = items.length;
+
+    if(items.length === 0){
+        header.style.display = "none";
+        container.innerHTML = "";
+        updateGrandTotal();
+        return;
+    }
+
+    header.style.display = "grid";
 
     let html = "";
 
-    items.forEach((item,index) => {
+    items.forEach((item,i)=>{
 
         html += `
+        <div class="row">
 
-        <div class="item">
+            <div class="serial">${i+1}</div>
 
-            <div class="line">
+            <div class="item-name">${item.name}</div>
 
-                <div class="name">
+            <div class="qty">${item.qty}</div>
 
-                    ${item.name}
+            <input class="rate-input"
+                inputmode="numeric"
+                value="${item.rate || ''}"
+                oninput="updateRate(${i},this.value)">
 
-                </div>
-
-                <div class="qty">
-
-                    ${item.qty}
-
-                </div>
-
-                <input
-                    type="text"
-                    inputmode="numeric"
-                    class="rate"
-                    placeholder="₹"
-                    value="${item.rate || ''}"
-                    oninput="
-                        updateRate(
-                            ${index},
-                            this.value
-                        )
-                    "
-                >
-
-                <div
-                    class="total"
-                    id="total-${index}">
-
-                    ₹${Number(item.total).toFixed(0)}
-
-                </div>
-
-                <button
-                    class="delete-btn"
-                    onclick="removeItem(${index})">
-
-                    ✕
-
-                </button>
-
+            <div class="total" id="total-${i}">
+                ₹${item.total.toFixed(0)}
             </div>
 
-        </div>
+            <button class="delete-btn" onclick="removeItem(${i})">✕</button>
 
-        `;
+        </div>`;
     });
 
     container.innerHTML = html;
@@ -394,80 +309,18 @@ function renderItems(){
     updateGrandTotal();
 }
 
-/* Update Rate */
-
-function updateRate(index, value){
-
-    const item =
-        items[index];
-
-    item.rate =
-        Number(value);
-
-    let qtyValue = 0;
-
-    if(item.qty.includes("kg")){
-
-        qtyValue =
-            parseFloat(
-                item.qty.replace("kg","")
-            );
-    }
-
-    else if(item.qty.includes("g")){
-
-        qtyValue =
-            parseFloat(
-                item.qty.replace("g","")
-            ) / 1000;
-    }
-
-    else{
-
-        qtyValue =
-            parseFloat(item.qty);
-    }
-
-    item.total =
-        qtyValue * item.rate;
-
-    document.getElementById(
-        "total-" + index
-    ).innerText =
-    "₹" + item.total.toFixed(0);
-
-    updateGrandTotal();
-}
-
-/* Grand Total */
-
 function updateGrandTotal(){
 
-    let total = 0;
-
-    items.forEach(item => {
-
-        total += Number(item.total);
-
-    });
-
-    document.getElementById(
-        "grandTotal"
-    ).innerText =
-    total.toFixed(0);
+    let total = items.reduce((s,i)=>s+i.total,0);
+    document.getElementById("grandTotal").innerText = total.toFixed(0);
 }
 
-/* Remove */
-
-function removeItem(index){
-
-    items.splice(index,1);
-
+function removeItem(i){
+    items.splice(i,1);
     renderItems();
 }
 
 </script>
 
 </body>
-
 </html>
