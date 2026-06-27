@@ -6,159 +6,260 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>सीताराम मार्केट लिस्ट</title>
+<title>सीताराम</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
-*{box-sizing:border-box;}
+*{
+    box-sizing:border-box;
+}
 
 body{
     margin:0;
-    padding:14px;
-    padding-bottom:120px;
-    background:#eef2ff;
+    padding:16px;
+    padding-bottom:140px;
+    background:
+        linear-gradient(
+            180deg,
+            #eef2ff 0%,
+            #f8fafc 100%
+        );
     font-family:'Poppins',sans-serif;
 }
 
-.sitaram{
+/* HEADER */
+
+.header{
     text-align:center;
-    font-family:'Noto Sans Devanagari';
     font-size:34px;
-    font-weight:700;
+    font-weight:800;
     color:#ea580c;
+    margin-top:8px;
+    letter-spacing:1px;
 }
 
-.sub-title{
+.sub{
     text-align:center;
     color:#64748b;
-    font-size:14px;
-    margin-bottom:16px;
+    font-size:13px;
+    margin-bottom:18px;
 }
+
+/* INPUT BOX */
 
 .input-box{
     background:white;
-    padding:16px;
-    border-radius:18px;
+    padding:14px;
+    border-radius:22px;
+    box-shadow:
+        0 8px 20px rgba(99,102,241,0.08);
 }
 
 textarea{
     width:100%;
-    height:110px;
+    height:100px;
     border:none;
     outline:none;
     resize:none;
-    border-radius:14px;
-    background:#f8faff;
     padding:14px;
+    border-radius:16px;
+    background:#f8faff;
+    font-size:14px;
+    color:#111827;
 }
+
+/* BUTTON */
 
 .add-btn{
     width:100%;
-    margin-top:14px;
+    margin-top:12px;
     padding:15px;
     border:none;
-    border-radius:14px;
-    font-weight:600;
+    border-radius:16px;
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #7c3aed
+        );
     color:white;
-    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    font-size:15px;
+    font-weight:700;
+    box-shadow:
+        0 6px 16px rgba(79,70,229,0.3);
 }
+
+/* SUMMARY */
 
 .summary{
-    margin-top:14px;
+    margin-top:16px;
     display:flex;
     justify-content:space-between;
-    font-weight:600;
-    color:#4f46e5;
+    align-items:center;
+    padding:0 6px;
+    color:#4338ca;
+    font-weight:700;
 }
 
-.bill-box{
-    margin-top:14px;
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-}
+/* HEADER */
 
 .table-header{
-    display:grid;
-    grid-template-columns:45px 1.5fr 70px 80px 90px 36px;
-    background:#4f46e5;
+    display:none;
+    margin-top:14px;
+    background:
+        linear-gradient(
+            135deg,
+            #4338ca,
+            #6d28d9
+        );
     color:white;
-    padding:12px;
-    font-size:12px;
-    font-weight:700;
+    padding:14px 16px;
+    border-radius:18px;
+    box-shadow:
+        0 6px 16px rgba(67,56,202,0.2);
 }
 
-.row{
-    display:grid;
-    grid-template-columns:45px 1.5fr 70px 80px 90px 36px;
-    gap:6px;
-    padding:12px;
-    border-bottom:1px solid #eef2ff;
-    align-items:center;
-}
-
-.serial{
-    width:30px;
-    height:30px;
+.header-top,
+.header-bottom{
     display:flex;
+    justify-content:space-between;
     align-items:center;
-    justify-content:center;
-    background:#eef2ff;
-    border-radius:50%;
+}
+
+.header-top{
+    font-size:13px;
     font-weight:700;
 }
+
+.header-bottom{
+    margin-top:7px;
+    font-size:11px;
+    opacity:0.9;
+}
+
+/* CARD */
+
+.card{
+    margin-top:12px;
+    background:white;
+    border-radius:22px;
+    padding:14px;
+    box-shadow:
+        0 8px 20px rgba(15,23,42,0.06);
+    border:1px solid #eef2ff;
+}
+
+/* TOP */
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+/* NAME */
 
 .item-name{
-    font-weight:600;
+    flex:1;
+    font-size:16px;
+    font-weight:700;
+    color:#111827;
+    line-height:1.4;
     word-break:break-word;
 }
 
-.qty{
-    text-align:center;
-    background:#eef2ff;
-    padding:6px;
-    border-radius:8px;
-    font-size:12px;
+/* RIGHT */
+
+.right{
+    display:flex;
+    align-items:center;
+    gap:10px;
 }
 
-.rate-input{
-    width:100%;
-    text-align:center;
+/* RATE */
+
+.rate{
+    width:78px;
     border:none;
     outline:none;
-    padding:8px;
-    border-radius:8px;
-    background:#f8fafc;
+    background:#eef2ff;
+    padding:9px;
+    border-radius:12px;
+    text-align:center;
+    font-weight:700;
+    font-size:15px;
+    color:#312e81;
+    box-shadow:
+        inset 0 2px 4px rgba(0,0,0,0.04);
 }
 
-.total{
-    text-align:right;
+/* DELETE */
+
+.del{
+    color:#ef4444;
+    font-size:22px;
+    font-weight:900;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.del:active{
+    transform:scale(0.9);
+}
+
+/* BOTTOM */
+
+.bottom{
+    margin-top:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-left:24px;
+}
+
+/* QTY */
+
+.qty{
+    background:#eef2ff;
+    color:#4338ca;
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:12px;
     font-weight:700;
+}
+
+/* TOTAL */
+
+.total{
+    font-size:18px;
+    font-weight:800;
     color:#16a34a;
 }
 
-.delete-btn{
-    width:28px;
-    height:28px;
-    border:none;
-    border-radius:6px;
-    background:#ef4444;
-    color:white;
-}
+/* FOOTER */
 
-.grand-total{
+.footer{
     position:fixed;
-    left:0;
     bottom:0;
+    left:0;
     width:100%;
-    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    padding:18px;
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #7c3aed
+        );
     color:white;
     text-align:center;
-    padding:16px;
     font-size:22px;
-    font-weight:700;
+    font-weight:800;
+    box-shadow:
+        0 -8px 20px rgba(79,70,229,0.25);
+    border-radius:22px 22px 0 0;
 }
 
 </style>
@@ -167,156 +268,297 @@ textarea{
 
 <body>
 
-<div class="sitaram">सीताराम</div>
-<div class="sub-title">Smart Billing System</div>
+<div class="header">सीताराम</div>
+
+<div class="sub">
+Smart Market Billing
+</div>
 
 <div class="input-box">
 
-<textarea id="bulkInput" placeholder="aata 5kg
+<textarea id="input"
+placeholder="aata 5kg
 chawal 4kg
-haldi 300g"></textarea>
+haldi powder 500g"></textarea>
 
-<button class="add-btn" onclick="addBulkItems()">+ Add Items</button>
+<button class="add-btn"
+onclick="addItems()">
+
++ Add Items
+
+</button>
 
 </div>
 
 <div class="summary">
-    <div>Total Items: <span id="itemCount">0</span></div>
+
+<div>
+Total Items:
+<span id="count">0</span>
 </div>
-
-<div class="bill-box">
-
-<div class="table-header" id="tableHeader" style="display:none;">
-    <div>#</div>
-    <div>ITEM</div>
-    <div>QTY</div>
-    <div>RATE</div>
-    <div>TOTAL</div>
-    <div></div>
-</div>
-
-<div id="items"></div>
 
 </div>
 
-<div class="grand-total">
-Total ₹<span id="grandTotal">0</span>
+<!-- HEADER -->
+
+<div class="table-header"
+id="thead">
+
+    <div class="header-top">
+        <div>ITEM</div>
+        <div>RATE</div>
+    </div>
+
+    <div class="header-bottom">
+        <div>QTY</div>
+        <div>TOTAL</div>
+    </div>
+
+</div>
+
+<!-- LIST -->
+
+<div id="list"></div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+Total ₹<span id="grand">0</span>
+
 </div>
 
 <script>
 
 let items = [];
 
-function addBulkItems(){
+/* ADD ITEMS */
 
-    const text = document.getElementById("bulkInput").value.trim();
+function addItems(){
+
+    const text =
+        document
+        .getElementById("input")
+        .value
+        .trim();
+
     if(!text) return;
 
-    text.split("\n").forEach(line => {
+    text
+    .split("\n")
+    .forEach(line=>{
 
-        let parts = line.trim().split(" ");
-        let qty = parts.pop();
-        let name = parts.join(" ");
+        let parts =
+            line
+            .trim()
+            .split(" ");
+
+        let qty =
+            parts.pop();
+
+        let name =
+            parts.join(" ");
 
         if(!name || !qty) return;
 
-        let existing = items.find(i =>
-            i.name.toLowerCase() === name.toLowerCase()
-        );
+        let existing =
+            items.find(i=>
+
+                i.name.toLowerCase()
+                ===
+                name.toLowerCase()
+
+            );
 
         if(existing){
+
             existing.qty = qty;
+
         }else{
-            items.push({name, qty, rate:0, total:0});
+
+            items.push({
+
+                name,
+                qty,
+                rate:0,
+                total:0
+
+            });
         }
+
     });
 
-    document.getElementById("bulkInput").value = "";
+    document
+        .getElementById("input")
+        .value = "";
+
+    document
+        .getElementById("thead")
+        .style.display = "block";
+
     renderItems();
 }
 
-/* ⭐ FIXED: NO FULL RE-RENDER ON TYPING */
-function updateRate(index, value){
+/* CALCULATE */
 
-    const item = items[index];
-    item.rate = Number(value);
+function calculate(item){
 
     let qtyValue = 0;
 
     if(item.qty.includes("kg")){
-        qtyValue = parseFloat(item.qty.replace("kg",""));
-    }
-    else if(item.qty.includes("g")){
-        qtyValue = parseFloat(item.qty.replace("g","")) / 1000;
-    }
-    else{
-        qtyValue = parseFloat(item.qty);
+
+        qtyValue =
+            parseFloat(
+                item.qty.replace("kg","")
+            );
+
+    }else{
+
+        qtyValue =
+            parseFloat(
+                item.qty.replace("g","")
+            ) / 1000;
     }
 
-    item.total = qtyValue * item.rate;
-
-    document.getElementById("total-" + index).innerText =
-        "₹" + item.total.toFixed(0);
-
-    updateGrandTotal();
+    item.total =
+        qtyValue * (item.rate || 0);
 }
+
+/* RATE UPDATE */
+
+function updateRate(index,value){
+
+    items[index].rate =
+        Number(value);
+
+    calculate(items[index]);
+
+    document
+        .getElementById(
+            "total-"+index
+        )
+        .innerText =
+
+        "₹" +
+        items[index]
+        .total
+        .toFixed(0);
+
+    updateGrand();
+}
+
+/* RENDER */
 
 function renderItems(){
 
-    const container = document.getElementById("items");
-    const header = document.getElementById("tableHeader");
-
-    document.getElementById("itemCount").innerText = items.length;
-
-    if(items.length === 0){
-        header.style.display = "none";
-        container.innerHTML = "";
-        updateGrandTotal();
-        return;
-    }
-
-    header.style.display = "grid";
-
     let html = "";
 
-    items.forEach((item,i)=>{
+    items.forEach((item,index)=>{
+
+        calculate(item);
 
         html += `
-        <div class="row">
 
-            <div class="serial">${i+1}</div>
+        <div class="card">
 
-            <div class="item-name">${item.name}</div>
+            <!-- TOP -->
 
-            <div class="qty">${item.qty}</div>
+            <div class="top">
 
-            <input class="rate-input"
-                inputmode="numeric"
-                value="${item.rate || ''}"
-                oninput="updateRate(${i},this.value)">
+                <div class="item-name">
 
-            <div class="total" id="total-${i}">
-                ₹${item.total.toFixed(0)}
+                    ${index+1}.
+                    ${item.name}
+
+                </div>
+
+                <div class="right">
+
+                    <input class="rate"
+                        value="${item.rate || ''}"
+                        oninput="updateRate(${index},this.value)">
+
+                    <div class="del"
+                        onclick="removeItem(${index})">
+
+                        ✕
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <button class="delete-btn" onclick="removeItem(${i})">✕</button>
+            <!-- BOTTOM -->
 
-        </div>`;
+            <div class="bottom">
+
+                <div class="qty">
+
+                    ${item.qty}
+
+                </div>
+
+                <div class="total"
+                    id="total-${index}">
+
+                    ₹${item.total.toFixed(0)}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
     });
 
-    container.innerHTML = html;
+    document
+        .getElementById("list")
+        .innerHTML = html;
 
-    updateGrandTotal();
+    document
+        .getElementById("count")
+        .innerText =
+        items.length;
+
+    updateGrand();
 }
 
-function updateGrandTotal(){
+/* GRAND TOTAL */
 
-    let total = items.reduce((s,i)=>s+i.total,0);
-    document.getElementById("grandTotal").innerText = total.toFixed(0);
+function updateGrand(){
+
+    let total =
+        items.reduce(
+
+            (sum,item)=>
+
+            sum + item.total,
+
+            0
+
+        );
+
+    document
+        .getElementById("grand")
+        .innerText =
+        total.toFixed(0);
 }
 
-function removeItem(i){
-    items.splice(i,1);
+/* REMOVE */
+
+function removeItem(index){
+
+    items.splice(index,1);
+
+    if(items.length === 0){
+
+        document
+            .getElementById("thead")
+            .style.display = "none";
+    }
+
     renderItems();
 }
 
