@@ -18,66 +18,92 @@
 
 body{
     margin:0;
-    padding:10px;
+    padding:12px;
     font-family:Arial;
-    background:#f3f3f3;
+    background:#eef2ff;
 }
 
 /* Header */
 
-h2{
+.header{
     text-align:center;
     margin-bottom:15px;
+}
+
+.header h2{
+    margin:0;
+    color:#4f46e5;
+    font-size:28px;
+}
+
+.header p{
+    margin-top:5px;
+    color:#666;
 }
 
 /* Add Box */
 
 .add-box{
     background:white;
-    padding:12px;
-    border-radius:12px;
+    padding:14px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(79,70,229,0.12);
     position:sticky;
-    top:0;
+    top:10px;
     z-index:100;
 }
 
-.input-row{
-    display:flex;
-    gap:8px;
+/* Textarea */
+
+textarea{
+    width:100%;
+    height:110px;
+    border:2px solid #e0e7ff;
+    border-radius:14px;
+    padding:14px;
+    font-size:16px;
+    outline:none;
+    resize:none;
+    background:#f8faff;
 }
 
-input{
-    flex:1;
-    padding:14px;
-    border:1px solid #ccc;
-    border-radius:10px;
-    font-size:16px;
+textarea:focus{
+    border-color:#4f46e5;
 }
+
+/* Add Button */
 
 .add-btn{
-    margin-top:10px;
     width:100%;
-    padding:14px;
+    margin-top:12px;
+    padding:15px;
     border:none;
-    border-radius:10px;
-    background:#2196F3;
+    border-radius:14px;
+    background:linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
     color:white;
     font-size:18px;
+    font-weight:bold;
 }
 
 /* List */
 
 #items{
-    margin-top:15px;
+    margin-top:18px;
+    padding-bottom:100px;
 }
 
 /* Item */
 
 .item{
     background:white;
-    border-radius:12px;
-    padding:14px;
-    margin-bottom:10px;
+    border-radius:16px;
+    padding:12px;
+    margin-bottom:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.05);
 }
 
 /* One Line */
@@ -85,65 +111,89 @@ input{
 .line{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
 }
 
-/* Product Name */
+/* Name */
 
 .name{
     flex:1;
-    font-size:18px;
+    font-size:16px;
     font-weight:bold;
+    color:#111827;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 
 /* Qty */
 
 .qty{
-    color:#666;
-    min-width:60px;
+    width:60px;
     text-align:center;
+    color:#666;
+    font-size:14px;
 }
 
 /* Rate */
 
 .rate{
-    width:90px;
-    padding:10px;
-    font-size:16px;
+    width:70px;
+    border:2px solid #e5e7eb;
+    border-radius:10px;
+    padding:10px 6px;
+    font-size:15px;
+    text-align:center;
+    outline:none;
+    background:#fafafa;
+}
+
+.rate:focus{
+    border-color:#4f46e5;
+    background:white;
 }
 
 /* Total */
 
 .total{
-    min-width:90px;
+    width:75px;
     text-align:right;
+    font-size:16px;
     font-weight:bold;
-    font-size:18px;
+    color:#4f46e5;
 }
 
 /* Remove */
 
-.remove{
+.delete-btn{
+    width:38px;
+    height:38px;
     border:none;
-    background:red;
+    border-radius:10px;
+    background:#ef4444;
     color:white;
-    border-radius:8px;
-    padding:10px 12px;
-    font-size:16px;
+    font-size:18px;
+    flex-shrink:0;
 }
 
-/* Grand Total */
+/* Total Bar */
 
 .grand-total{
-    position:sticky;
+    position:fixed;
     bottom:0;
-    background:#2196F3;
+    left:0;
+    width:100%;
+    background:linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
     color:white;
-    padding:16px;
-    border-radius:12px 12px 0 0;
     text-align:center;
+    padding:18px;
     font-size:24px;
     font-weight:bold;
+    box-shadow:0 -4px 15px rgba(79,70,229,0.25);
 }
 
 </style>
@@ -152,35 +202,31 @@ input{
 
 <body>
 
-<h2>Market List</h2>
+<div class="header">
 
-<!-- Add -->
+    <h2>🛒 Market List</h2>
+
+    <p>Fast grocery calculator</p>
+
+</div>
+
+<!-- Add Box -->
 
 <div class="add-box">
 
-    <div class="input-row">
+<textarea
+    id="bulkInput"
+    placeholder="aata 5kg
+chawal 4kg
+haldi powder 300g"></textarea>
 
-        <input
-            type="text"
-            id="name"
-            placeholder="Item"
-        >
+<button
+    class="add-btn"
+    onclick="addBulkItems()">
 
-        <input
-            type="text"
-            id="qty"
-            placeholder="Qty"
-        >
+    + Add List
 
-    </div>
-
-    <button
-        class="add-btn"
-        onclick="addItem()">
-
-        + Add
-
-    </button>
+</button>
 
 </div>
 
@@ -192,7 +238,7 @@ input{
 
 <div class="grand-total">
 
-    ₹<span id="grandTotal">0.00</span>
+    Total ₹<span id="grandTotal">0</span>
 
 </div>
 
@@ -202,65 +248,77 @@ input{
 
 let items = [];
 
-/* Add Item */
+/* Add Bulk */
 
-function addItem(){
+function addBulkItems(){
 
-    const name =
-        document.getElementById("name")
-        .value.trim();
+    const text =
+        document.getElementById(
+            "bulkInput"
+        ).value.trim();
 
-    const qty =
-        document.getElementById("qty")
-        .value.trim();
+    if(text === ""){
 
-    if(name === "" || qty === ""){
-
-        alert("Enter Item & Qty");
+        alert("Enter Items");
 
         return;
     }
 
-    /* Duplicate Check */
+    const lines =
+        text.split("\n");
 
-    const existing =
-        items.find(item =>
+    lines.forEach(line => {
 
-            item.name.toLowerCase() ===
-            name.toLowerCase()
-        );
+        line = line.trim();
 
-    if(existing){
+        if(line === "") return;
 
-        existing.qty = qty;
+        const parts =
+            line.split(" ");
 
-    }else{
+        const qty =
+            parts.pop();
 
-        items.push({
+        const name =
+            parts.join(" ");
 
-            name:name,
+        if(name === "" || qty === "")
+            return;
 
-            qty:qty,
+        /* Duplicate */
 
-            rate:0,
+        const existing =
+            items.find(item =>
 
-            total:0
+                item.name.toLowerCase() ===
+                name.toLowerCase()
+            );
 
-        });
-    }
+        if(existing){
+
+            existing.qty = qty;
+
+        }else{
+
+            items.push({
+
+                name:name,
+
+                qty:qty,
+
+                rate:0,
+
+                total:0
+
+            });
+        }
+    });
 
     renderItems();
 
-    /* Clear */
-
-    document.getElementById("name")
-        .value = "";
-
-    document.getElementById("qty")
-        .value = "";
-
-    document.getElementById("name")
-        .focus();
+    document.getElementById(
+        "bulkInput"
+    ).value = "";
 }
 
 /* Render */
@@ -268,17 +326,15 @@ function addItem(){
 function renderItems(){
 
     const container =
-        document.getElementById("items");
+        document.getElementById(
+            "items"
+        );
 
-    container.innerHTML = "";
-
-    let grandTotal = 0;
+    let html = "";
 
     items.forEach((item,index) => {
 
-        grandTotal += Number(item.total);
-
-        container.innerHTML += `
+        html += `
 
         <div class="item">
 
@@ -297,10 +353,11 @@ function renderItems(){
                 </div>
 
                 <input
-                    type="number"
+                    type="text"
+                    inputmode="numeric"
                     class="rate"
-                    placeholder="Rate"
-                    value="${item.rate}"
+                    placeholder="₹"
+                    value="${item.rate || ''}"
                     oninput="
                         updateRate(
                             ${index},
@@ -309,17 +366,19 @@ function renderItems(){
                     "
                 >
 
-                <div class="total">
+                <div
+                    class="total"
+                    id="total-${index}">
 
                     ₹${Number(item.total).toFixed(0)}
 
                 </div>
 
                 <button
-                    class="remove"
+                    class="delete-btn"
                     onclick="removeItem(${index})">
 
-                    X
+                    ✕
 
                 </button>
 
@@ -330,9 +389,9 @@ function renderItems(){
         `;
     });
 
-    document.getElementById("grandTotal")
-        .innerText =
-        grandTotal.toFixed(0);
+    container.innerHTML = html;
+
+    updateGrandTotal();
 }
 
 /* Update Rate */
@@ -347,8 +406,6 @@ function updateRate(index, value){
 
     let qtyValue = 0;
 
-    /* KG */
-
     if(item.qty.includes("kg")){
 
         qtyValue =
@@ -357,8 +414,6 @@ function updateRate(index, value){
             );
     }
 
-    /* Gram */
-
     else if(item.qty.includes("g")){
 
         qtyValue =
@@ -366,8 +421,6 @@ function updateRate(index, value){
                 item.qty.replace("g","")
             ) / 1000;
     }
-
-    /* Piece */
 
     else{
 
@@ -378,7 +431,30 @@ function updateRate(index, value){
     item.total =
         qtyValue * item.rate;
 
-    renderItems();
+    document.getElementById(
+        "total-" + index
+    ).innerText =
+    "₹" + item.total.toFixed(0);
+
+    updateGrandTotal();
+}
+
+/* Grand Total */
+
+function updateGrandTotal(){
+
+    let total = 0;
+
+    items.forEach(item => {
+
+        total += Number(item.total);
+
+    });
+
+    document.getElementById(
+        "grandTotal"
+    ).innerText =
+    total.toFixed(0);
 }
 
 /* Remove */
