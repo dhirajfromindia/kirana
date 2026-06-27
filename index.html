@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Market List</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:10px;
+    font-family:Arial;
+    background:#f3f3f3;
+}
+
+/* Header */
+
+h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+/* Add Box */
+
+.add-box{
+    background:white;
+    padding:12px;
+    border-radius:12px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.input-row{
+    display:flex;
+    gap:8px;
+}
+
+input{
+    flex:1;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.add-btn{
+    margin-top:10px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#2196F3;
+    color:white;
+    font-size:18px;
+}
+
+/* List */
+
+#items{
+    margin-top:15px;
+}
+
+/* Item */
+
+.item{
+    background:white;
+    border-radius:12px;
+    padding:14px;
+    margin-bottom:10px;
+}
+
+/* One Line */
+
+.line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+/* Product Name */
+
+.name{
+    flex:1;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* Qty */
+
+.qty{
+    color:#666;
+    min-width:60px;
+    text-align:center;
+}
+
+/* Rate */
+
+.rate{
+    width:90px;
+    padding:10px;
+    font-size:16px;
+}
+
+/* Total */
+
+.total{
+    min-width:90px;
+    text-align:right;
+    font-weight:bold;
+    font-size:18px;
+}
+
+/* Remove */
+
+.remove{
+    border:none;
+    background:red;
+    color:white;
+    border-radius:8px;
+    padding:10px 12px;
+    font-size:16px;
+}
+
+/* Grand Total */
+
+.grand-total{
+    position:sticky;
+    bottom:0;
+    background:#2196F3;
+    color:white;
+    padding:16px;
+    border-radius:12px 12px 0 0;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>Market List</h2>
+
+<!-- Add -->
+
+<div class="add-box">
+
+    <div class="input-row">
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Item"
+        >
+
+        <input
+            type="text"
+            id="qty"
+            placeholder="Qty"
+        >
+
+    </div>
+
+    <button
+        class="add-btn"
+        onclick="addItem()">
+
+        + Add
+
+    </button>
+
+</div>
+
+<!-- Items -->
+
+<div id="items"></div>
+
+<!-- Grand Total -->
+
+<div class="grand-total">
+
+    ₹<span id="grandTotal">0.00</span>
+
+</div>
+
+<script>
+
+/* Data */
+
+let items = [];
+
+/* Add Item */
+
+function addItem(){
+
+    const name =
+        document.getElementById("name")
+        .value.trim();
+
+    const qty =
+        document.getElementById("qty")
+        .value.trim();
+
+    if(name === "" || qty === ""){
+
+        alert("Enter Item & Qty");
+
+        return;
+    }
+
+    /* Duplicate Check */
+
+    const existing =
+        items.find(item =>
+
+            item.name.toLowerCase() ===
+            name.toLowerCase()
+        );
+
+    if(existing){
+
+        existing.qty = qty;
+
+    }else{
+
+        items.push({
+
+            name:name,
+
+            qty:qty,
+
+            rate:0,
+
+            total:0
+
+        });
+    }
+
+    renderItems();
+
+    /* Clear */
+
+    document.getElementById("name")
+        .value = "";
+
+    document.getElementById("qty")
+        .value = "";
+
+    document.getElementById("name")
+        .focus();
+}
+
+/* Render */
+
+function renderItems(){
+
+    const container =
+        document.getElementById("items");
+
+    container.innerHTML = "";
+
+    let grandTotal = 0;
+
+    items.forEach((item,index) => {
+
+        grandTotal += Number(item.total);
+
+        container.innerHTML += `
+
+        <div class="item">
+
+            <div class="line">
+
+                <div class="name">
+
+                    ${item.name}
+
+                </div>
+
+                <div class="qty">
+
+                    ${item.qty}
+
+                </div>
+
+                <input
+                    type="number"
+                    class="rate"
+                    placeholder="Rate"
+                    value="${item.rate}"
+                    oninput="
+                        updateRate(
+                            ${index},
+                            this.value
+                        )
+                    "
+                >
+
+                <div class="total">
+
+                    ₹${Number(item.total).toFixed(0)}
+
+                </div>
+
+                <button
+                    class="remove"
+                    onclick="removeItem(${index})">
+
+                    X
+
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+    });
+
+    document.getElementById("grandTotal")
+        .innerText =
+        grandTotal.toFixed(0);
+}
+
+/* Update Rate */
+
+function updateRate(index, value){
+
+    const item =
+        items[index];
+
+    item.rate =
+        Number(value);
+
+    let qtyValue = 0;
+
+    /* KG */
+
+    if(item.qty.includes("kg")){
+
+        qtyValue =
+            parseFloat(
+                item.qty.replace("kg","")
+            );
+    }
+
+    /* Gram */
+
+    else if(item.qty.includes("g")){
+
+        qtyValue =
+            parseFloat(
+                item.qty.replace("g","")
+            ) / 1000;
+    }
+
+    /* Piece */
+
+    else{
+
+        qtyValue =
+            parseFloat(item.qty);
+    }
+
+    item.total =
+        qtyValue * item.rate;
+
+    renderItems();
+}
+
+/* Remove */
+
+function removeItem(index){
+
+    items.splice(index,1);
+
+    renderItems();
+}
+
+</script>
+
+</body>
+
+</html>
