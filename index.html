@@ -4,110 +4,148 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>सीताराम</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+rel="stylesheet">
 
 <style>
 
 *{
     box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
 }
 
 body{
     margin:0;
     padding:16px;
-    padding-bottom:140px;
+    padding-bottom:130px;
     background:
         linear-gradient(
             180deg,
-            #eef2ff 0%,
-            #f8fafc 100%
+            #f8fafc 0%,
+            #eef2ff 100%
         );
     font-family:'Poppins',sans-serif;
+    color:#0f172a;
 }
 
 /* HEADER */
 
 .header{
     text-align:center;
-    font-size:34px;
+    font-size:36px;
     font-weight:800;
-    color:#ea580c;
-    margin-top:8px;
-    letter-spacing:1px;
+    color:#f97316;
+    margin-top:4px;
 }
 
 .sub{
     text-align:center;
     color:#64748b;
     font-size:13px;
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 /* INPUT BOX */
 
 .input-box{
     background:white;
-    padding:14px;
-    border-radius:22px;
+    border-radius:26px;
+    padding:16px;
     box-shadow:
-        0 8px 20px rgba(99,102,241,0.08);
+        0 10px 30px rgba(99,102,241,0.10);
+    border:1px solid #e2e8f0;
 }
 
 textarea{
     width:100%;
-    height:100px;
+    height:110px;
     border:none;
     outline:none;
     resize:none;
-    padding:14px;
-    border-radius:16px;
-    background:#f8faff;
-    font-size:14px;
+    border-radius:18px;
+    background:#f8fafc;
+    padding:16px;
+    font-size:15px;
     color:#111827;
+    line-height:1.6;
+    font-family:'Poppins',sans-serif;
+}
+
+/* DYNAMIC SUGGESTIONS */
+
+.suggestions{
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    margin-top:14px;
+    padding-bottom:4px;
+}
+
+.suggestions::-webkit-scrollbar{
+    display:none;
+}
+
+.suggestion{
+    flex:none;
+    padding:9px 14px;
+    border-radius:999px;
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #e0e7ff
+        );
+    color:#4338ca;
+    font-size:12px;
+    font-weight:700;
+    white-space:nowrap;
+    cursor:pointer;
+    border:1px solid #c7d2fe;
 }
 
 /* BUTTON */
 
 .add-btn{
     width:100%;
-    margin-top:12px;
-    padding:15px;
+    margin-top:16px;
     border:none;
-    border-radius:16px;
+    border-radius:18px;
+    padding:16px;
+    font-size:15px;
+    font-weight:700;
+    color:white;
     background:
         linear-gradient(
             135deg,
             #4f46e5,
             #7c3aed
         );
-    color:white;
-    font-size:15px;
-    font-weight:700;
     box-shadow:
-        0 6px 16px rgba(79,70,229,0.3);
+        0 10px 24px rgba(79,70,229,0.30);
 }
 
 /* SUMMARY */
 
 .summary{
-    margin-top:16px;
+    margin-top:18px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 6px;
+    padding:0 4px;
     color:#4338ca;
     font-weight:700;
 }
 
-/* HEADER */
+/* TABLE HEADER */
 
 .table-header{
     display:none;
-    margin-top:14px;
+    margin-top:16px;
     background:
         linear-gradient(
             135deg,
@@ -116,9 +154,9 @@ textarea{
         );
     color:white;
     padding:14px 16px;
-    border-radius:18px;
+    border-radius:20px;
     box-shadow:
-        0 6px 16px rgba(67,56,202,0.2);
+        0 8px 20px rgba(67,56,202,0.25);
 }
 
 .header-top,
@@ -142,13 +180,13 @@ textarea{
 /* CARD */
 
 .card{
-    margin-top:12px;
+    margin-top:14px;
     background:white;
-    border-radius:22px;
-    padding:14px;
+    border-radius:24px;
+    padding:16px;
     box-shadow:
-        0 8px 20px rgba(15,23,42,0.06);
-    border:1px solid #eef2ff;
+        0 8px 24px rgba(15,23,42,0.06);
+    border:1px solid #e2e8f0;
 }
 
 /* TOP */
@@ -156,7 +194,7 @@ textarea{
 .top{
     display:flex;
     justify-content:space-between;
-    align-items:center;
+    align-items:flex-start;
     gap:10px;
 }
 
@@ -166,8 +204,8 @@ textarea{
     flex:1;
     font-size:16px;
     font-weight:700;
+    line-height:1.5;
     color:#111827;
-    line-height:1.4;
     word-break:break-word;
 }
 
@@ -182,38 +220,33 @@ textarea{
 /* RATE */
 
 .rate{
-    width:78px;
+    width:82px;
     border:none;
     outline:none;
     background:#eef2ff;
-    padding:9px;
-    border-radius:12px;
+    border-radius:14px;
+    padding:10px;
     text-align:center;
-    font-weight:700;
     font-size:15px;
+    font-weight:700;
     color:#312e81;
-    box-shadow:
-        inset 0 2px 4px rgba(0,0,0,0.04);
+    font-family:'Poppins',sans-serif;
 }
 
-/* DELETE */
+/* REMOVE */
 
 .del{
     color:#ef4444;
-    font-size:22px;
-    font-weight:900;
+    font-size:24px;
+    font-weight:700;
     cursor:pointer;
-    transition:0.2s;
-}
-
-.del:active{
-    transform:scale(0.9);
+    line-height:1;
 }
 
 /* BOTTOM */
 
 .bottom{
-    margin-top:10px;
+    margin-top:12px;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -223,9 +256,14 @@ textarea{
 /* QTY */
 
 .qty{
-    background:#eef2ff;
+    background:
+        linear-gradient(
+            135deg,
+            #eef2ff,
+            #e0e7ff
+        );
     color:#4338ca;
-    padding:6px 12px;
+    padding:7px 14px;
     border-radius:999px;
     font-size:12px;
     font-weight:700;
@@ -234,7 +272,7 @@ textarea{
 /* TOTAL */
 
 .total{
-    font-size:18px;
+    font-size:20px;
     font-weight:800;
     color:#16a34a;
 }
@@ -247,19 +285,19 @@ textarea{
     left:0;
     width:100%;
     padding:18px;
+    text-align:center;
+    color:white;
+    font-size:24px;
+    font-weight:800;
     background:
         linear-gradient(
             135deg,
             #4f46e5,
             #7c3aed
         );
-    color:white;
-    text-align:center;
-    font-size:22px;
-    font-weight:800;
+    border-radius:24px 24px 0 0;
     box-shadow:
-        0 -8px 20px rgba(79,70,229,0.25);
-    border-radius:22px 22px 0 0;
+        0 -10px 24px rgba(79,70,229,0.25);
 }
 
 </style>
@@ -274,12 +312,19 @@ textarea{
 Smart Market Billing
 </div>
 
+<!-- INPUT -->
+
 <div class="input-box">
 
 <textarea id="input"
 placeholder="aata 5kg
-chawal 4kg
+chawal 2kg
 haldi powder 500g"></textarea>
+
+<!-- SUGGESTIONS -->
+
+<div class="suggestions"
+id="suggestions"></div>
 
 <button class="add-btn"
 onclick="addItems()">
@@ -290,6 +335,8 @@ onclick="addItems()">
 
 </div>
 
+<!-- SUMMARY -->
+
 <div class="summary">
 
 <div>
@@ -299,7 +346,7 @@ Total Items:
 
 </div>
 
-<!-- HEADER -->
+<!-- TABLE HEADER -->
 
 <div class="table-header"
 id="thead">
@@ -324,13 +371,103 @@ id="thead">
 
 <div class="footer">
 
-Total ₹<span id="grand">0</span>
+₹<span id="grand">0</span>
 
 </div>
 
 <script>
 
+/* ITEMS */
+
 let items = [];
+
+/* DYNAMIC SUGGESTIONS */
+
+let suggestionItems = [];
+
+const savedSuggestions =
+    localStorage.getItem(
+        "marketSuggestions"
+    );
+
+if(savedSuggestions){
+
+    suggestionItems =
+        JSON.parse(savedSuggestions);
+}
+
+/* RENDER SUGGESTIONS */
+
+function renderSuggestions(){
+
+    const suggestionBox =
+        document.getElementById(
+            "suggestions"
+        );
+
+    if(!suggestionBox) return;
+
+    suggestionBox.innerHTML = "";
+
+    suggestionItems.forEach(item=>{
+
+        suggestionBox.innerHTML += `
+
+        <div class="suggestion"
+            onclick="addSuggestion('${item}')">
+
+            ${item}
+
+        </div>
+
+        `;
+    });
+}
+
+/* SAVE SUGGESTION */
+
+function saveSuggestion(itemText){
+
+    if(
+        !suggestionItems.includes(itemText)
+    ){
+
+        suggestionItems.unshift(itemText);
+
+        suggestionItems =
+            suggestionItems.slice(0,15);
+
+        localStorage.setItem(
+
+            "marketSuggestions",
+
+            JSON.stringify(
+                suggestionItems
+            )
+
+        );
+
+        renderSuggestions();
+    }
+}
+
+/* ADD SUGGESTION */
+
+function addSuggestion(text){
+
+    const textarea =
+        document.getElementById("input");
+
+    if(textarea.value.trim() !== ""){
+
+        textarea.value +=
+            "\n" + text;
+
+    }else{
+
+        textarea.value = text;
+    }
+}
 
 /* CAPITALIZE */
 
@@ -341,7 +478,11 @@ function capitalizeWords(text){
         .split(" ")
         .map(word =>
 
-            word.charAt(0).toUpperCase() +
+            word.charAt(0)
+            .toUpperCase()
+
+            +
+
             word.slice(1)
 
         )
@@ -365,9 +506,7 @@ function addItems(){
     .forEach(line=>{
 
         let parts =
-            line
-            .trim()
-            .split(" ");
+            line.trim().split(" ");
 
         let qty =
             parts.pop();
@@ -402,6 +541,10 @@ function addItems(){
                 total:0
 
             });
+
+            saveSuggestion(
+                name + " " + qty
+            );
         }
 
     });
@@ -430,19 +573,25 @@ function calculate(item){
                 item.qty.replace("kg","")
             );
 
-    }else{
+    }
+    else if(item.qty.includes("g")){
 
         qtyValue =
             parseFloat(
                 item.qty.replace("g","")
             ) / 1000;
     }
+    else{
+
+        qtyValue =
+            parseFloat(item.qty);
+    }
 
     item.total =
         qtyValue * (item.rate || 0);
 }
 
-/* RATE UPDATE */
+/* UPDATE RATE */
 
 function updateRate(index,value){
 
@@ -465,7 +614,7 @@ function updateRate(index,value){
     updateGrand();
 }
 
-/* RENDER */
+/* RENDER ITEMS */
 
 function renderItems(){
 
@@ -478,8 +627,6 @@ function renderItems(){
         html += `
 
         <div class="card">
-
-            <!-- TOP -->
 
             <div class="top">
 
@@ -506,8 +653,6 @@ function renderItems(){
                 </div>
 
             </div>
-
-            <!-- BOTTOM -->
 
             <div class="bottom">
 
@@ -579,6 +724,14 @@ function removeItem(index){
 
     renderItems();
 }
+
+/* PAGE LOAD */
+
+window.onload = function(){
+
+    renderSuggestions();
+
+};
 
 </script>
 
