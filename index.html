@@ -332,6 +332,22 @@ Total ₹<span id="grand">0</span>
 
 let items = [];
 
+/* CAPITALIZE */
+
+function capitalizeWords(text){
+
+    return text
+        .toLowerCase()
+        .split(" ")
+        .map(word =>
+
+            word.charAt(0).toUpperCase() +
+            word.slice(1)
+
+        )
+        .join(" ");
+}
+
 /* ADD ITEMS */
 
 function addItems(){
@@ -357,7 +373,9 @@ function addItems(){
             parts.pop();
 
         let name =
-            parts.join(" ");
+            capitalizeWords(
+                parts.join(" ")
+            );
 
         if(!name || !qty) return;
 
@@ -474,7 +492,7 @@ function renderItems(){
 
                 <div class="right">
 
-                    <input class="rate"
+                    <input class="rate" type="number"
                         value="${item.rate || ''}"
                         oninput="updateRate(${index},this.value)">
 
